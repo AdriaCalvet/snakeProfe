@@ -17,15 +17,25 @@ namespace Snake2
 
     class SnakeGame
     {
+        public const int nPomes = 5;
         public const int X_SIZE = 5;
         public const int Y_SIZE = 5;
 
         Point capSerp = new Point(X_SIZE/2, 0);
         DireccioSnake direccio = DireccioSnake.Dreta;
-
+        List<Point> pomes = new List<Point>();
         public Point CapSerp { get => capSerp; set => capSerp = value; }
         public DireccioSnake Direccio { get => direccio; set => direccio = value; }
+        public List<Point> Pomes { get => pomes; set => pomes = value; }
 
+        public SnakeGame()
+        {
+            Random r = new Random();
+            for (int i = 0; i < nPomes; i++)
+            {
+                Pomes.add(new Point(r.Next(0, X_SIZE), r.Next(0, Y_SIZE)));
+            }
+        }
         internal void moure(DireccioSnake direccio)
         {
             if(direccio == DireccioSnake.Amunt)
